@@ -7,6 +7,8 @@
 //
 
 #import "MeViewController.h"
+#import "GBZhiBoViewController.h"
+#import "FilterZhiBoViewController.h"
 
 @interface MeViewController ()
 
@@ -18,22 +20,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor yellowColor];
+    
+    [self addOpenBtn];
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)addOpenBtn {
+    UIButton *openBtn = [[UIButton alloc] initWithFrame:CGRectMake((GBWidth - 80) / 2, (GBHeight - 40) / 2, 80, 40)];
+    [openBtn setTitle:@"开启直播" forState:UIControlStateNormal];
+    [openBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [openBtn addTarget:self action:@selector(openZhiBo) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:openBtn];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)openZhiBo {
+    FilterZhiBoViewController *zhiboVC = [FilterZhiBoViewController new];
+    [self.navigationController presentViewController:zhiboVC animated:YES completion:nil];
 }
-*/
+
 
 @end
